@@ -1,13 +1,14 @@
 package org.pageobject.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.pageobject.BasePage;
-import org.pageobject.modules.CumputEngineFormModule;
+import org.pageobject.modules.ComputEngineFormModule;
 
 import java.time.Duration;
 
@@ -27,7 +28,14 @@ public class CalculatorPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
-    public CumputEngineFormModule openComputeEngine() {
+    public ComputEngineFormModule openComputeEngine() {
+
+
+        WebElement shadowHost = webDriver.findElement(By.xpath("//cloudx-chat"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+        WebElement shadowCloseButton = shadowRoot.findElement(By.cssSelector("svg[viewBox=\"0 0 24 24\"]"));
+        shadowCloseButton.click();
+
 
 
         webDriver.switchTo().frame(0);
@@ -42,6 +50,6 @@ public class CalculatorPage extends BasePage {
 
        webDriver.switchTo().defaultContent();
 
-        return new CumputEngineFormModule(webDriver);
+        return new ComputEngineFormModule(webDriver);
     }
 }

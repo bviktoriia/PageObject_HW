@@ -27,16 +27,18 @@ import java.time.Duration;
             return wait.until(ExpectedConditions.visibilityOf(element));
         }
 
-        public EstimateModule sendToEmail() {
-            emailEstimateField.click();
-            return this;
-        }
         public String priceIsCalculated() {
             WebElement option = waitForVisibilityOf(priceField);
             String actualPrice = option.getText();
 
             return actualPrice;
         }
+
+        public EstimateModule sendToEmail() {
+            emailEstimateField.click();
+            return this;
+        }
+
 
         public EmailGeneratingPage openNewTab() {
             String originalWindowHandle = webDriver.getWindowHandle();

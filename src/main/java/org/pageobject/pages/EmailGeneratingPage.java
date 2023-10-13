@@ -42,6 +42,13 @@ public class EmailGeneratingPage extends BasePage {
         }
         return this;
     }
+    public String copyGeneratedEmail(){
+        generatedText = new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='geny']")));
+        generatedEmail = generatedText.getText();
+        return generatedEmail;
+    }
+
     public EmailGeneratingPage generateEmail() {
         randomEmailGeneratorButton.click();
         webDriver.navigate().back();
@@ -58,12 +65,7 @@ public class EmailGeneratingPage extends BasePage {
         changeTab();
         return new EmailGeneratingPage(webDriver);
     }
-    public String copyGeneratedEmail(){
-        generatedText = new WebDriverWait(webDriver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='geny']")));
-        generatedEmail = generatedText.getText();
-        return generatedEmail;
-    }
+
     public InboxPage goToInBoxPage() {
         webDriver.switchTo().defaultContent();
         JavascriptExecutor js = (JavascriptExecutor) webDriver;

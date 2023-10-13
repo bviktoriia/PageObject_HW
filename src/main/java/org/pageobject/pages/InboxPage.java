@@ -11,7 +11,7 @@ import org.pageobject.BasePage;
 import java.time.Duration;
 
 public class InboxPage extends BasePage {
-    @FindBy(xpath = "//*[contains(text(),\"Estimated Monthly Cost:\")]")
+    @FindBy(xpath = "//tr/td[2]/h3")
     private WebElement estimatedCostText;
     private WebElement iFrame;
     private String ifMailFrame = "ifmail";
